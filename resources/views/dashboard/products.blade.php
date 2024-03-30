@@ -4,6 +4,16 @@
 <div class="container">
     <main style="margin-top: 58px;">
         <div class="container pt-4">
+            <div class="container">
+                @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="list-unstyled">
+                        @foreach($errors->all() as $error)
+                        <li >{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -13,26 +23,25 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                         </div>
+
                         <div class="modal-body " style="font-size: larger; font-weight: bold;">
-                            <form action="{{route('createproducts')}}" method="post">
+                            <form action="{{ route('createproducts') }}" method="post">
                                 @csrf
                                 <label class="mt-3">Product ID:</label>
-                                <input type="text" class="form-control" name="product_code">
-
+                                <input type="text" class="form-control" name="product_code" required>
+        
                                 <label class="mt-3">Product Name:</label>
-                                <input type="text" class="form-control" name="title">
-
+                                <input type="text" class="form-control" name="title" required>
+        
                                 <label class="mt-3">Product Description:</label>
-                                <textarea type="text" class="form-control" name="description"> </textarea>
-
+                                <textarea type="text" class="form-control" name="description" required></textarea>
+        
                                 <label class="mt-3">Product Price:</label>
-                                <input type="text" class="form-control" name="price">
-
+                                <input type="text" class="form-control" name="price" required>
+        
                                 <button type="submit" class="btn btn-success mt-3">Save</button>
-                                <button type="button" class="btn btn-danger mt-3"
-                                    data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-danger mt-3" data-bs-dismiss="modal">Cancel</button>
                             </form>
-
                         </div>
 
                     </div>
@@ -44,14 +53,16 @@
                 </a>
             </div>
             <hr />
-            <form action="{{route('search')}}" method="get">
+            <form action="{{ route('products') }}" method="GET">
+
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for..." name="search">
-                    <button type="submit" class="btn btn  "><i class="fa fa-search"></i></button>
-                    <a href="{{route('products')}}" class="btn btn-dark" type="submit">Show All Products</a>
+                    <input type="text" name="search" class="form-control" placeholder="Search for...">
+                    <button type="submit" name="action" value="search"><i class="fa fa-search"></i></button>
+                    <button type="submit" name="action" class="btn btn-dark" value="showAll">Show All Products</button>
                 </div>
             </form>
-            <div class="m-2" ></div>
+
+            <div class="m-2"></div>
             @if(Session::has('success'))
             <div class="alert alert-success " style="font-weight: bold;">
                 {{Session::get('success')}}
@@ -64,6 +75,7 @@
                         <th>Product ID</th>
                         <th>Title</th>
                         <th>Description</th>
+                        <th> Image </th>
                         <th>Price</th>
                         <th colspan="2">Action</th>
                     </tr>
@@ -75,6 +87,7 @@
                         <td>{{$items->product_code}} </td>
                         <td>{{$items->title}} </td>
                         <td>{{$items->description}}</td>
+                        <td> Image </td>
                         <td>{{$items->price}} <span style="color: green;">SAR</span></td>
 
                         <td><a href="{{route('del',['id'=>$items['id']])}}"><i class="fa fa-trash text-danger"

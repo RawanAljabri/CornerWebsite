@@ -5,6 +5,11 @@
 <html lang="en">
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- تضمين Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- تضمين Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <meta charset="UTF-8">
@@ -67,16 +72,18 @@
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-3 mt-4">
-                    <a href="{{route('index')}}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true"><i
-                            class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span></a>
+                    <a href="{{route('index')}}" class="list-group-item list-group-item-action py-2 ripple"
+                        aria-current="true"><i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span></a>
                     <a href="{{route('products')}}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-chart-bar fa-fw me-3"></i><span>Products</span></a>
-                            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                                class="fas fa-chart-line fa-fw me-3"></i><span>Rate</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-receipt fa-fw me-3"></i><span>Invoice</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-shopping-cart fa-fw me-3"></i><span>Carts</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a>
-                            <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                                class="fas fa-users fa-fw me-3"></i><span>Customers</span></a>
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-users fa-fw me-3"></i><span>Customers</span></a>
                 </div>
             </div>
         </nav>
@@ -86,41 +93,37 @@
         <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
             <!-- Container wrapper -->
             <div class="container-fluid">
-                <!-- Toggle button -->
-                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarMenu"
                     aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
 
                 <!-- Brand -->
-                <a class="navbar-brand"  href="#">
+                <a class="navbar-brand" href="#">
                     <h2 style="color: #4b5552 ;">Corner</h2>
                 </a>
-                <!-- Search form -->
-                
+                <li class="nav-item dropdown list-unstyled">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false"> <i class="fas fa-user mx-1"></i> Welcome {{ Auth::user()->name }}! </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="#">My account</a>
+                        </li>
 
-                <!-- Right links -->
-                
-                    <li class="nav-item dropdown list-unstyled">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user mx-1"></i> Welcome  {{ Auth::user()->name }}! </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item" href="#">My account</a>
-                            </li>
-        
-                            <li>
-                                <a class="dropdown-item" href="{{route('logout')}}">Log out</a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li>
+                            <a class="dropdown-item" href="{{route('logout')}}">Log out</a>
+                        </li>
+                    </ul>
+                </li>
                 </ul>
             </div>
             <!-- Container wrapper -->
         </nav>
         <!-- Navbar -->
     </header>
-        @yield('content')
+    @yield('content')
     <!--Main layout-->
-  
+
 </body>
+
 </html>
