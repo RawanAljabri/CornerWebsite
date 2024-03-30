@@ -47,18 +47,22 @@ class Dashboard extends Controller
 
 
     public function CreateProduct(Request $request)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required| max:100',
-            'price' => 'required|numeric|min:0',
-            'product_code' => 'required|unique:products',
-            'description' => 'required|max:255',
-        ]);
+{
+    $validatedData = $request->validate([
+        'title' => 'required|max:100',
+        'price' => 'required|numeric|min:0',
+        'product_code' => 'required|unique:products',
+        'description' => 'required|max:255',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        $product = Product::create($validatedData);
-        return redirect('/dashboard/products')->with('success', 'Product added successfully!');
-    }
+    $imageName = time().'.'.$request->image->extension();  
+    $request->image->move(public_path('uploads'), $imageName);
 
+    $product = Product::create(array_merge($validatedData, ['image' => $imageName]));
+
+    return redirect('/dashboard/products')->with('success', 'Product added successfully!');
+}
 
     public function Del($id)
     {
@@ -79,6 +83,7 @@ class Dashboard extends Controller
             'price' => 'required|numeric|min:0',
             'product_code' => 'required|unique:products,product_code,' . $request->id,
             'description' => 'required| max:255',
+
         ]);
 
         $product = Product::findOrFail($request->id);

@@ -16,7 +16,7 @@
 
       <div class="card mt-5">
         <div class="card-body bg-white">
-          <form action="{{ route('update') }}" method="post">
+          <form action="{{ route('update') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row mt-3" style="font-size: larger; font-weight: bold;">
               <input type="hidden" name="id" value="{{ $products['id'] }}" />
@@ -30,7 +30,9 @@
                 <input type="text" name="title" class="form-control p-1" id="title" value="{{ $products->title }}">
 
                 <label for="description" class="mt-3">Product Description</label>
-                <textarea name="description" class="form-control p-1" id="description">{{ $products->description }}</textarea>
+                <textarea name="description" class="form-control p-1"
+                  id="description">{{ $products->description }}</textarea>
+
 
                 <label for="price" class="mt-3">Product Price</label>
                 <input type="text" name="price" class="form-control p-1" id="price" value="{{ $products->price }}">
@@ -52,13 +54,13 @@
 
 <script>
   function cancelEdit() {
-      window.location.href = "{{ route('products') }}";
-      setTimeout(function() {
-          var successMessage = document.querySelector('.alert-success');
-          if (successMessage) {
-              successMessage.remove();
-          }
-      }, 3000);
+    window.location.href = "{{ route('products') }}";
+    setTimeout(function () {
+      var successMessage = document.querySelector('.alert-success');
+      if (successMessage) {
+        successMessage.remove();
+      }
+    }, 3000);
   }
 </script>
 
