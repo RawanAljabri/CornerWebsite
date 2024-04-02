@@ -4,7 +4,7 @@
 
 <!-- <span class="text-dark"> {{Session::get('data')}} </span>
  -->
- <div class="container">
+ <div class="container-fluid">
     <main style="margin-top: 58px;">
         <div class="container pt-4">
             <section>

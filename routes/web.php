@@ -1,11 +1,15 @@
 <?php
 use App\Http\Controllers\Shopping;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard;
+use Illuminate\Support\Facades\App;
 
 Route::get('/', function () {
     return view('welcome');
-});
+}); 
+/* -> Middleware('auth');
+ */
 
 Auth::routes();
 
@@ -23,5 +27,15 @@ Route::get('/logout' , [Dashboard::class, 'logout'])->name('logout');
 
 /* END USER */
 
+Route::get('/', [Shopping::class, 'GetProducts'])->name('products');
+Route::get('/shopping/addtocart/{id}', [Shopping::class, 'addToCart'])->name('add-to-cart');
+
+
+/* LOCALIZATION */
+Route::get('language/{locale}', function ($locale) {
+    App::setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
 
 

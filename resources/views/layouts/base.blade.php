@@ -66,17 +66,20 @@
     </style>
 </head>
 
-<body>
+<body dir="{{(session()->get('locale')=='ar' ? 'rtl' : 'ltr')}}">
     <header>
         <!-- Sidebar -->
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-3 mt-4">
                     <a href="{{route('index')}}" class="list-group-item list-group-item-action py-2 ripple"
-                        aria-current="true"><i class="fas fa-home-alt fa-fw me-3" ></i><span style="font-weight: bold;">Home</span></a>
+                        aria-current="true"><i class="fas fa-home-alt fa-fw me-3"></i><span
+                            style="font-weight: bold;">Home</span></a>
                     <a href="{{route('products')}}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-chart-bar fa-fw me-3"></i><span>Products</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                    <a href="{{route('products')}}" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-table fa-fw me-3"></i><span>Products Details</span></a>
+                    <a href="{{route('products')}}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-receipt fa-fw me-3"></i><span>Invoice</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-shopping-cart fa-fw me-3"></i><span>Carts</span></a>
@@ -84,6 +87,7 @@
                             class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-users fa-fw me-3"></i><span>Customers</span></a>
+
                 </div>
             </div>
         </nav>
@@ -99,8 +103,7 @@
                 </button>
 
                 <!-- Brand -->
-                <a class="navbar-brand" href="#">
-                    <h2 style="color: #4b5552 ;">Corner</h2>
+                <a href="#" class="logo"> <img src="\assets/images/brand.svg" style="max-width: 120px;"></a>
                 </a>
                 <li class="nav-item dropdown list-unstyled">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -115,6 +118,17 @@
                         </li>
                     </ul>
                 </li>
+                <!-- LOCALIZATION -->
+                <ul class=" nav-item list-unstyled">
+                    <li><a class="dropdown-item" href="{{ url('language/ar') }} "
+                            style="font-weight: 600;">{{__('message.Arabic')}} <img src="\assets/images/ksa.png"
+                                class="rounded-circle ml-2" width="15" height="15" alt=""></a></li>
+                    <li><a  class="dropdown-item" href="{{ url('language/en') }}" style="font-weight: 600;">{{__('message.English')}} <img
+                                src="\assets/images/usa.png" class="rounded-circle" width="15" height="15" alt=""></a>
+                    </li>
+                </ul>
+                </li>
+
                 </ul>
             </div>
             <!-- Container wrapper -->
