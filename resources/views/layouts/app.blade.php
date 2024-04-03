@@ -114,8 +114,6 @@
         .main-text h5 {
             font-size: 18px;
             margin-bottom: 10px;
-
-
         }
 
         .main-text h1 {
