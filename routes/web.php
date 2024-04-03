@@ -27,7 +27,7 @@ Route::get('/logout' , [Dashboard::class, 'logout'])->name('logout');
 
 /* END USER */
 
-Route::get('/shopping', [Shopping::class, 'Shopping'])->name('Shopping');
+Route::get('/', [Shopping::class, 'Shopping'])->name('Shopping');
 Route::get('/shopping/addtocart/{id}', [Shopping::class, 'addToCart'])->name('add-to-cart');
 Route::get('/shopping/chairs', [Shopping::class, 'GetChairsList'])->name('chairs');
 Route::get('/shopping/chairs/details/{id}', [Shopping::class, 'ShowDetails'])->name('show-details');
