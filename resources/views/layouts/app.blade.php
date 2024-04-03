@@ -1,6 +1,3 @@
-<!-- User static structre -->
-<!-- NAV FOOTER -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,13 +17,40 @@
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
-            font-family: cairo;
             list-style: none;
             text-decoration: none;
             font-family: "Noto Kufi Arabic", sans-serif;
-
         }
 
+        @media (max-width: 750px) {
+            .navmenu {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 300px;
+                height: 130vh;
+                background-color: #fff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 120px 30px;
+                transition: all .42s;
+                transform: translateX(100%);
+            }
+
+            .navmenu.open {
+                transform: translateX(0);
+            }
+
+            .navmenu a {
+                display: block;
+                margin: 18px 0;
+            }
+
+            #menu-icon.bx-x {
+                color: #979694;
+            }
+        }
 
         header {
             position: fixed;
@@ -49,7 +73,6 @@
         .navmenu {
             display: flex;
             list-style: none;
-
         }
 
         .navmenu a {
@@ -100,15 +123,12 @@
             background-size: cover;
             background-repeat: no-repeat;
             display: flex;
-
-
         }
 
         .main-text {
             max-width: 600px;
             align-items: center;
             margin-top: 20%;
-
         }
 
         .main-text h5 {
@@ -119,15 +139,11 @@
         .main-text h1 {
             font-size: 30px;
             margin-bottom: 20px;
-
         }
 
         .main-text p {
             font-size: 16px;
             margin-bottom: 30px;
-
-
-
         }
 
         .main-btn {
@@ -142,13 +158,11 @@
             margin-top: 50px;
             margin-bottom: 30px;
             text-align: center;
-
         }
 
         .categories ul {
             list-style: none;
             padding: 0;
-
         }
 
         .categories ul li {
@@ -218,6 +232,7 @@
         .cart-btn:hover {
             background-color: #979694;
         }
+
         .details-btn:hover {
             background-color: #4b5552;
         }
@@ -256,7 +271,7 @@
 
         <ul class="navmenu">
             <li><a href="{{route('Shopping')}}">{{__('message.Home')}}</a></li>
-            <li><a href="#categories">{{__('message.Shop')}}</a></li>
+            <li><a href="{{route('chairs')}}">{{__('message.Shop')}}</a></li>
             <li><a href="#footer">{{__('message.Contact')}}</a></li>
             <li><a class="dropdown-item" href="{{ url('language/ar') }} "
                     style="font-weight: 600;">{{__('message.Arabic')}} <img src="\assets/images/ksa.png"
@@ -266,22 +281,14 @@
 
         </ul>
 
-
-
         <div class="nav-icon">
             <div>
                 <a href="#"> <i class="bx bx-search"> </i></a>
                 <a href="#"> <i class="bx bx-user"> </i></a>
                 <a href="#"><span style="position:fixed; margin-left: 20px; color: crimson">{{Session::get('count')}}</span><i class="bx bx-cart"></i></a>
-                <a href="#"> <i class="bx bx-menu"> </i></a>
-
+                <a href="#" id="menu-icon"><i class="bx bx-menu"></i></a>
             </div>
     </header>
-
-
-
-   
-
 
     <main class="py-4">
         @yield('content')
@@ -302,6 +309,15 @@
             <p>&copy; 2024 Corner. All rights reserved</p>
         </div>
     </footer>
+
+    <script>
+        let menu = document.querySelector('#menu-icon');
+        let navmenu = document.querySelector('.navmenu');
+        menu.onclick = () => {
+            menu.classList.toggle('bx-x-x');
+            navmenu.classList.toggle('open');
+        }
+    </script>
 </body>
 
 </html>
