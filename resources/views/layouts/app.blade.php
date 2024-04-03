@@ -107,7 +107,7 @@
         .main-text {
             max-width: 600px;
             align-items: center;
-            margin-top: 15%;
+            margin-top: 20%;
 
         }
 
@@ -119,7 +119,7 @@
         }
 
         .main-text h1 {
-            font-size: 40px;
+            font-size: 30px;
             margin-bottom: 20px;
 
         }
@@ -177,7 +177,7 @@
             margin-left: 0.5%;
             margin-top: 50px;
             display: grid;
-            gap: 2rem;
+            gap: 4rem;
             grid-template-columns: repeat(auto-fit, minmax(250px, auto));
         }
 
@@ -201,14 +201,27 @@
             margin-top: 15px;
             margin-bottom: 15px;
             border-radius: 15px;
-            padding: 10px 30px;
-            display: flex;
-            justify-content: flex-end;
+            padding: 4px 30px;
+            float: right;
+        }
+
+        .details-btn {
+            background-color: #979694;
+            color: #fff;
+            font-size: 18px;
+            transition: 0.3s ease;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            padding: 4px 30px;
             float: right;
         }
 
         .cart-btn:hover {
             background-color: #979694;
+        }
+        .details-btn:hover {
+            background-color: #4b5552;
         }
 
         .footer {
@@ -244,7 +257,7 @@
         <a href="#" class="logo"> <img src="\assets/images/brand.svg"></a>
 
         <ul class="navmenu">
-            <li><a href="#">{{__('message.Home')}}</a></li>
+            <li><a href="{{route('Shopping')}}">{{__('message.Home')}}</a></li>
             <li><a href="#categories">{{__('message.Shop')}}</a></li>
             <li><a href="#footer">{{__('message.Contact')}}</a></li>
             <li><a class="dropdown-item" href="{{ url('language/ar') }} "
@@ -261,7 +274,7 @@
             <div>
                 <a href="#"> <i class="bx bx-search"> </i></a>
                 <a href="#"> <i class="bx bx-user"> </i></a>
-                <a href="#"> <i class="bx bx-cart"> </i></a>
+                <a href="#"><span style="position:fixed; margin-left: 20px; color: crimson">{{Session::get('count')}}</span><i class="bx bx-cart"></i></a>
                 <a href="#"> <i class="bx bx-menu"> </i></a>
 
             </div>
@@ -269,14 +282,7 @@
 
 
 
-    <!-- HEADER -->
-    <section class="main-home">
-        <div class="main-text">
-            <h1>{{__('message.Elevate your space')}}<br> {{__('message.with elegant furniture')}}</h1>
-            <a href="#" class="main-btn">{{__('message.Shop Now')}}</a> <!-- صفحة جديدة للمنتجات -->
-        </div>
-    </section>
-
+   
 
 
     <main class="py-4">

@@ -18,7 +18,14 @@ return [
     'PRODUCT DESCRIPTION' => 'Product Description:',
     'PRODUCT PRICE' => 'Price:',
     'SAR' => 'SAR',
-   
+    'Buy Now' => 'Buy Now',
+    'Products' => 'Chairs',
+    'Details' => 'Details',
+    'Add to cart' => 'Add to cart',
+    'Save' => 'Save' ,
+    'Description' => 'Description',
+    'In stock' => 'In stock',
+
     '' => '',
     '' => '',
     '' => '',

@@ -27,8 +27,10 @@ Route::get('/logout' , [Dashboard::class, 'logout'])->name('logout');
 
 /* END USER */
 
-Route::get('/', [Shopping::class, 'GetProducts'])->name('products');
+Route::get('/shopping', [Shopping::class, 'Shopping'])->name('Shopping');
 Route::get('/shopping/addtocart/{id}', [Shopping::class, 'addToCart'])->name('add-to-cart');
+Route::get('/shopping/chairs', [Shopping::class, 'GetChairsList'])->name('chairs');
+Route::get('/shopping/chairs/details/{id}', [Shopping::class, 'ShowDetails'])->name('show-details');
 
 
 /* LOCALIZATION */
@@ -37,5 +39,11 @@ Route::get('language/{locale}', function ($locale) {
     session()->put('locale', $locale);
     return redirect()->back();
 });
+
+
+/*  API   */
+Route::get('/getcoffeehot', [Shopping::class, 'GetCoffeHot']);
+Route::get('/getuser', [Shopping::class, 'GetUsersAPI']);
+
 
 
