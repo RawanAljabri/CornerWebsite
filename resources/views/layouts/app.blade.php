@@ -267,7 +267,7 @@
 <body dir="{{(session()->get('locale') == 'ar' ? 'rtl' : 'ltr')}}">
     <!-- NAV -->
     <header>
-        <a href="#" class="logo"> <img src="\assets/images/brand.svg"></a>
+        <a href="{{route('Shopping')}}" class="logo"> <img src="\assets/images/brand.svg"></a>
 
         <ul class="navmenu">
             <li><a href="{{route('Shopping')}}">{{__('message.Home')}}</a></li>
