@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session; //to save data when moving from a page to another
 use Illuminate\Support\Facades\Cookie;
@@ -45,24 +46,39 @@ class Dashboard extends Controller
         return view('dashboard.products', ['products' => $products]);
     }
 
+    public function GetCart()
+    {
+        $cart = DB::table('carts')->get();
+        //dd($cart);
+        return view('dashboard.cartDB')->with('cart', $cart);
+    }
+
+    public function deleteCartItem($id)
+    {
+        $cart = Cart::findOrFail($id);
+        $cart->delete();
+
+        return redirect('/dashboard/cart')->with('success', 'Item deleted successfully!');
+    }
+
 
     public function CreateProduct(Request $request)
-{
-    $validatedData = $request->validate([
-        'title' => 'required|max:100',
-        'price' => 'required|numeric|min:0',
-        'product_code' => 'required|unique:products',
-        'description' => 'required|max:255',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:100',
+            'price' => 'required|numeric|min:0',
+            'product_code' => 'required|unique:products',
+            'description' => 'required|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $imageName = time().'.'.$request->image->extension();  
-    $request->image->move(public_path('uploads'), $imageName);
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('uploads'), $imageName);
 
-    $product = Product::create(array_merge($validatedData, ['image' => $imageName]));
+        $product = Product::create(array_merge($validatedData, ['image' => $imageName]));
 
-    return redirect('/dashboard/products')->with('success', 'Product added successfully!');
-}
+        return redirect('/dashboard/products')->with('success', 'Product added successfully!');
+    }
 
     public function Del($id)
     {

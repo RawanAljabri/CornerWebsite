@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chairs;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
@@ -27,7 +27,7 @@ class Shopping extends Controller
         return view('welcome', ['products' => $products]);
     }
 
-  
+
     public function GetChairsList()
     {
         $title = strtolower('Chair');
@@ -35,18 +35,19 @@ class Shopping extends Controller
         return view('shopping.chairs', compact('products', 'title'));
     }
 
-    public function ShowDetails($id){
+    public function ShowDetails($id)
+    {
 
         $products = DB::table('products')
-        ->where('id' , $id)
-        ->first();
-        $tax=0.15;
+            ->where('id', $id)
+            ->first();
+        $tax = 0.15;
         $descount = 10;
         $products->total = $products->price * $tax + $products->price;
         $products->tax = $tax;
         $products->descount = 10;
         $products->net = $products->total - $products->descount;
-        return view('shopping.details' , compact('products'));
+        return view('shopping.details', compact('products'));
     }
 
     public function addToCart(Request $request, $id)
@@ -63,8 +64,8 @@ class Shopping extends Controller
         $products->net = $products->total - $products->descount;
 
         $row = [
-            'title' => $products -> title,
-            'product_code'=>$products->product_code,
+            'title' => $products->title,
+            'product_code' => $products->product_code,
             'price' => $products->price,
             'tax' => $products->tax,
             'total' => $products->total,
@@ -79,6 +80,23 @@ class Shopping extends Controller
         return redirect()->back();
 
     }
+    public function ShowCart()
+    {
+        $cartItems = DB::table('carts')
+                    ->join('products', 'carts.product_code', '=', 'products.product_code')
+                    ->select('carts.*', 'products.image')
+                    ->get();
+        return view('shopping.usercart', ['cartItems' => $cartItems]);
+    }
+
+    public function deleteCartItemForUser($id)
+    {
+        $cartuser = Cart::findOrFail($id);
+        $cartuser->delete();
+        return redirect('/shopping/carts')->with('success', 'Item deleted successfully!');
+    }
+
+
 
 
     //test to read data from api

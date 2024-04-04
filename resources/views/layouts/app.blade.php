@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Corner Website</title>
     <style>
         * {
@@ -285,7 +284,7 @@
             <div>
                 <a href="#"> <i class="bx bx-search"> </i></a>
                 <a href="#"> <i class="bx bx-user"> </i></a>
-                <a href="#"><span style="position:fixed; margin-left: 20px; color: crimson">{{Session::get('count')}}</span><i class="bx bx-cart"></i></a>
+                <a href="{{route('carts')}}"><span style="position:fixed; margin-left: 20px; color: crimson">{{Session::get('count')}}</span><a href="{{route('carts')}}"><i class="bx bx-cart"></i></a></a>
                 <a href="#" id="menu-icon"><i class="bx bx-menu"></i></a>
             </div>
     </header>

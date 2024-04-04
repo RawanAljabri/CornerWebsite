@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="d-flex justify-content-center">
-                    <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image">
-                        <img class="rounded-4 fit" src="{{ asset('uploads/' . $products->image) }}" style="max-width: 100%; height: auto;" />
+                    <a>
+                        <img src="{{ asset('uploads/' . $products->image) }}" style="max-width: 350px; height: auto; margin-top:2%" />
                     </a>
                 </div>
             </div>
@@ -48,8 +48,7 @@
                     <hr />
                     <div style="margin-top:2%"> 
                     <a href="#" style="background-color: black;  padding: 5px; color: white"> {{__('message.Buy Now')}} </a>
-                                <a href="{{route('add-to-cart', $products->id)}}" style="background-color: #4b5552; padding: 5px; color: white"> <i
-                                        class="bx bx-cart"></i> {{__('message.Add to cart')}} </a>
+                                <a href="{{route('add-to-cart', $products->id)}}" style="background-color: #4b5552; padding: 5px; color: white"> <i class="bx bx-cart"></i> {{__('message.Add to cart')}} </a>
                                 <a href="#" style="background-color: #979694;color: black;  padding: 5px;"> <i class="bx bx-heart"></i> {{__('message.Save')}} </a>
                     </div>
                 </div>

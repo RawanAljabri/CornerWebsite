@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
     <title>Admin Panel - لوحة التحكم </title>
     <style>
         * {
@@ -66,7 +67,7 @@
     </style>
 </head>
 
-<body dir="{{(session()->get('locale')=='ar' ? 'rtl' : 'ltr')}}">
+<body>
     <header>
         <!-- Sidebar -->
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
@@ -77,12 +78,10 @@
                             style="font-weight: bold;">Home</span></a>
                     <a href="{{route('products')}}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-chart-bar fa-fw me-3"></i><span>Products</span></a>
-                    <a href="{{route('products')}}" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="fas fa-table fa-fw me-3"></i><span>Products Details</span></a>
+                    <a href="{{route('cart')}}" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-shopping-cart fa-fw me-3"></i><span>Carts</span></a>
                     <a href="{{route('products')}}" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-receipt fa-fw me-3"></i><span>Invoice</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="fas fa-shopping-cart fa-fw me-3"></i><span>Carts</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a>
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
@@ -118,17 +117,7 @@
                         </li>
                     </ul>
                 </li>
-                <!-- LOCALIZATION -->
-                <ul class=" nav-item list-unstyled">
-                    <li><a class="dropdown-item" href="{{ url('language/ar') }} "
-                            style="font-weight: 600;">{{__('message.Arabic')}} <img src="\assets/images/ksa.png"
-                                class="rounded-circle ml-2" width="15" height="15" alt=""></a></li>
-                    <li><a  class="dropdown-item" href="{{ url('language/en') }}" style="font-weight: 600;">{{__('message.English')}} <img
-                                src="\assets/images/usa.png" class="rounded-circle" width="15" height="15" alt=""></a>
-                    </li>
-                </ul>
-                </li>
-
+                <!-- LOCALIZATION --> 
                 </ul>
             </div>
             <!-- Container wrapper -->
